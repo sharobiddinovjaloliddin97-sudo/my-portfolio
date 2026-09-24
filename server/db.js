@@ -179,7 +179,7 @@ async function initDatabase() {
       title: "Velmora E-Commerce Platform",
       subtitle: "Production-ready bilingual e-commerce suite with Django REST, React & PostgreSQL",
       category: "fullstack",
-      image: "assets/project-ecommerce.jpg",
+      image: "assets/velmora-logo.jpg",
       metric: "🛍️ Live on Vercel • Bilingual (UZ/RU)",
       tags: JSON.stringify(["React", "Vite", "Tailwind CSS", "Django", "Django REST", "PostgreSQL", "JWT"]),
       overview: "Velmora is a production-ready bilingual e-commerce web platform engineered with React (Vite) and Django REST Framework, featuring localized shopping, cart checkout, and JWT authentication.",
@@ -200,7 +200,7 @@ async function initDatabase() {
       title: "Agrobank Attendance & Employee Analytics",
       subtitle: "Bank employee check-in monitoring, biometric/E-IMZO auth & attendance analytics",
       category: "frontend",
-      image: "assets/project-fintech.jpg",
+      image: "assets/agrobank-logo.jpg",
       metric: "🏦 Enterprise HR Tool • E-IMZO Auth",
       tags: JSON.stringify(["JavaScript", "HTML5", "CSS3", "Chart.js", "E-IMZO", "REST API"]),
       overview: "An enterprise bank employee attendance and workforce analytics dashboard designed to monitor employee check-ins, late arrivals, and personnel department metrics in real-time.",
@@ -221,7 +221,7 @@ async function initDatabase() {
       title: "Spyfall (Shpion) Telegram Bot Game",
       subtitle: "Asynchronous multiplayer party game bot powered by Python & python-telegram-bot",
       category: "tools",
-      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%230f172a'/><circle cx='400' cy='190' r='90' fill='%236366f1' opacity='0.2'/><circle cx='400' cy='190' r='60' fill='none' stroke='%23818cf8' stroke-width='4'/><polygon points='400,150 420,210 380,210' fill='%23ec4899'/><text x='400' y='325' fill='%23ffffff' font-family='sans-serif' font-size='26' font-weight='bold' text-anchor='middle'>SPYFALL TELEGRAM GAME</text><text x='400' y='360' fill='%2394a3b8' font-family='sans-serif' font-size='16' text-anchor='middle'>Async Multiplayer • Python 3.11 • Zero AI Cost</text></svg>",
+      image: "assets/spyfall-logo.jpg",
       metric: "🎮 Async Group Game • 0% AI Cost",
       tags: JSON.stringify(["Python 3.11", "python-telegram-bot", "AsyncIO", "Telegram API"]),
       overview: "An asynchronous group game bot based on the popular Spyfall social deduction game, running entirely on pure Python game logic without requiring external AI credits.",
@@ -242,7 +242,7 @@ async function initDatabase() {
       title: "Velmora E-Commerce Telegram Store Bot",
       subtitle: "Telegram storefront bot bridging chat ordering with Django e-commerce backend",
       category: "tools",
-      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%23111827'/><rect x='280' y='80' width='240' height='270' rx='24' fill='%231f2937' stroke='%2306b6d4' stroke-width='3'/><circle cx='400' cy='170' r='40' fill='%2306b6d4' opacity='0.3'/><path d='M380 190 L400 160 L420 190' fill='none' stroke='%2306b6d4' stroke-width='4'/><text x='400' y='300' fill='%2322d3ee' font-family='sans-serif' font-size='20' font-weight='bold' text-anchor='middle'>VELMORA STORE BOT</text><text x='400' y='400' fill='%2394a3b8' font-family='sans-serif' font-size='16' text-anchor='middle'>In-Chat Storefront • Django REST Integration</text></svg>",
+      image: "assets/velmora-logo.jpg",
       metric: "🛒 In-Chat Storefront • Instant Ordering",
       tags: JSON.stringify(["Python", "python-telegram-bot", "Django REST API", "Webhooks", "E-Commerce"]),
       overview: "A dedicated Telegram bot client designed for the Velmora E-Commerce ecosystem, enabling customers to browse product catalogs, check stock, and place orders directly within Telegram.",
@@ -263,7 +263,7 @@ async function initDatabase() {
       title: "Family Birthday & Event Reminder Bot",
       subtitle: "Automated event scheduler & birthday notification bot with SQLite and aiohttp webhooks",
       category: "tools",
-      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%231e1b4b'/><rect x='260' y='65' width='280' height='260' rx='20' fill='%23312e81' stroke='%23a855f7' stroke-width='2'/><circle cx='350' cy='155' r='18' fill='%23ec4899'/><circle cx='450' cy='155' r='18' fill='%2310b981'/><rect x='320' y='205' width='160' height='24' rx='6' fill='%236366f1'/><text x='400' y='375' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold' text-anchor='middle'>FAMILY BIRTHDAY REMINDER</text><text x='400' y='410' fill='%23c084fc' font-family='sans-serif' font-size='15' text-anchor='middle'>Automated Calendar Scheduler • SQLite & aiohttp</text></svg>",
+      image: "assets/familybot-logo.png",
       metric: "🎂 Automated Reminders • 24/7 Webhook",
       tags: JSON.stringify(["Python 3.11", "python-telegram-bot", "SQLite", "APScheduler", "aiohttp"]),
       overview: "An automated Telegram assistant built to remember family birthdays, anniversaries, and custom recurrent events, dispatching timed congratulatory notifications to groups and private chats.",
@@ -298,6 +298,12 @@ async function initDatabase() {
       ]);
     }
   }
+
+  // Update existing project images to newly uploaded user assets
+  await runQuery("UPDATE projects SET image = 'assets/velmora-logo.jpg' WHERE id IN ('velmora-ecommerce', 'velmora-bot')");
+  await runQuery("UPDATE projects SET image = 'assets/spyfall-logo.jpg' WHERE id = 'spyfall-bot'");
+  await runQuery("UPDATE projects SET image = 'assets/agrobank-logo.jpg' WHERE id = 'agrobank-attendance'");
+  await runQuery("UPDATE projects SET image = 'assets/familybot-logo.png' WHERE id = 'family-birthday-bot'");
 
   // Seed / update categories
   const cats = [

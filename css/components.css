@@ -149,13 +149,23 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background-color: var(--bg-surface-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform var(--transition-slow);
+}
+
+.card-img[src*="agrobank"] {
+  object-fit: contain;
+  background-color: #ffffff;
+  padding: 1.5rem;
 }
 
 .project-card:hover .card-img {
@@ -346,6 +356,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+}
+
+.modal-banner img[src*="agrobank"] {
+  object-fit: contain;
+  background-color: #ffffff;
+  padding: 2.5rem;
 }
 
 .modal-content-area {
