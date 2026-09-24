@@ -393,7 +393,42 @@
     justify-content: space-between;
   }
 
+  .admin-container {
+    padding: 0 1rem 3rem 1rem;
+  }
+
+  .admin-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .metric-box {
+    padding: 1rem;
+  }
+
+  .metric-info-val {
+    font-size: 1.5rem;
+  }
+
+  .admin-tabs {
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .tab-btn {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
   .admin-card {
     padding: 1.25rem;
+    border-radius: var(--border-radius-md);
+  }
+
+  .admin-modal-dialog {
+    padding: 1.25rem;
+    width: 95%;
+    max-height: 88vh;
   }
 }

@@ -269,20 +269,40 @@ img, svg {
 .mobile-toggle {
   display: none;
   flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 8px;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
   cursor: pointer;
   z-index: 1010;
+  transition: all var(--transition-fast);
 }
 
 .mobile-toggle span {
   display: block;
   height: 2px;
-  width: 100%;
+  width: 20px;
   background-color: var(--text-primary);
   border-radius: 2px;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+  transform-origin: center;
+}
+
+.mobile-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Mobile Drawer */
@@ -290,12 +310,12 @@ img, svg {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 80%;
+  width: 82%;
   max-width: 320px;
   height: 100vh;
   background-color: var(--bg-surface);
   border-left: 1px solid var(--border-subtle);
-  padding: 6rem 2rem 2rem 2rem;
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
   z-index: 1005;
   transition: right var(--transition-slow);
   box-shadow: var(--shadow-lg);
@@ -308,17 +328,36 @@ img, svg {
   right: 0;
 }
 
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
 .mobile-nav-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .mobile-nav-link {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-primary);
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background-color: var(--badge-bg);
+  color: var(--primary-400);
 }
 
 .drawer-backdrop {
@@ -648,6 +687,19 @@ img, svg {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .container, .container-narrow {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+
+  .site-header {
+    height: 64px;
+  }
+
   .nav-menu, .nav-actions .btn-hire {
     display: none;
   }
@@ -656,34 +708,120 @@ img, svg {
     display: flex;
   }
 
+  .hero-section {
+    padding-top: calc(64px + 2rem);
+    padding-bottom: 3rem;
+    min-height: auto;
+  }
+
+  .hero-status-pill {
+    margin-bottom: 1.25rem;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.9rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 2.75rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-roles {
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .role-badge {
+    font-size: 0.825rem;
+    padding: 0.2rem 0.65rem;
+  }
+
+  .hero-desc {
+    font-size: 0.975rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 2.5rem auto;
+    gap: 0.75rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
   .hero-stats {
     grid-template-columns: repeat(2, 1fr);
-    padding: 1.25rem;
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+    border-radius: var(--border-radius-md);
+  }
+
+  .stat-value {
+    font-size: 1.65rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
   }
 
   .section {
-    padding: 4rem 0;
+    padding: 3.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.25rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.65rem, 5.5vw, 2.1rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .footer-content {
+    gap: 1.5rem;
   }
 
   .footer-bottom {
     flex-direction: column;
     text-align: center;
     justify-content: center;
+    gap: 1rem;
+  }
+
+  .back-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-stats {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.45rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
   }
 
   .hero-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
+    max-width: 100%;
   }
 }

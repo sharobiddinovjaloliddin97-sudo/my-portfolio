@@ -395,15 +395,19 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
      MOBILE DRAWER NAVIGATION
      ========================================================================== */
+  const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+
   function toggleMobileMenu(open) {
     if (!mobileDrawer || !drawerBackdrop) return;
     if (open) {
       mobileDrawer.classList.add('open');
       drawerBackdrop.classList.add('active');
+      if (mobileToggle) mobileToggle.classList.add('active');
       document.body.style.overflow = 'hidden';
     } else {
       mobileDrawer.classList.remove('open');
       drawerBackdrop.classList.remove('active');
+      if (mobileToggle) mobileToggle.classList.remove('active');
       document.body.style.overflow = '';
     }
   }
@@ -413,6 +417,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const isOpen = mobileDrawer.classList.contains('open');
       toggleMobileMenu(!isOpen);
     });
+  }
+
+  if (mobileDrawerClose) {
+    mobileDrawerClose.addEventListener('click', () => toggleMobileMenu(false));
   }
 
   if (drawerBackdrop) {

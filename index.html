@@ -92,6 +92,15 @@
   <!-- Mobile Drawer Menu -->
   <div id="drawer-backdrop" class="drawer-backdrop"></div>
   <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="nav-brand" style="font-size: 1.15rem;">
+        <span class="brand-icon" style="width: 32px; height: 32px; font-size: 0.95rem;">J</span>
+        <span class="brand-name dynamic-name">Jaloliddin</span>
+      </div>
+      <button id="mobile-drawer-close" class="modal-close-btn" style="position: static;" aria-label="Close Navigation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
     <div class="mobile-drawer-top">
       <ul class="mobile-nav-links">
         <li><a href="#hero" class="mobile-nav-link">About</a></li>
@@ -467,7 +476,7 @@
           <p id="modal-overview-text" style="color: var(--text-secondary); line-height: 1.6;"></p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div class="modal-challenge-grid">
           <div
             style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--border-radius-md); border: 1px solid var(--border-subtle);">
             <h4 style="font-size: 1rem; color: var(--accent-pink); margin-bottom: 0.5rem;">The Challenge</h4>
