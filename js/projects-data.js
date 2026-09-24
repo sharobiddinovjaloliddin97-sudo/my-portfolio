@@ -1,27 +1,27 @@
 /**
  * Portfolio Data Configuration
- * Update this file to easily modify your profile, projects, skills, and experience!
+ * Real Projects and Profile of Jaloliddin Sharobiddinov
  */
 
 const portfolioData = {
   profile: {
     name: "Jaloliddin",
-    title: "Full-Stack Software Engineer & Creative Developer",
+    title: "Full-Stack Software Engineer & Python / Web Developer",
     statusBadge: "Available for new projects & full-time roles",
-    bio: "Passionate software engineer dedicated to building high-performance web applications, scalable distributed architectures, and visually captivating digital experiences.",
+    bio: "Passionate software engineer dedicated to building high-performance web applications, scalable distributed architectures, and automated Telegram bot systems.",
     location: "Global / Remote",
-    email: "jaloliddin.dev@example.com",
-    phone: "+1 (555) 789-0123",
+    email: "sharobiddinovjaloliddin97@gmail.com",
+    phone: "+998 (90) 000-0000",
     socialLinks: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
+      github: "https://github.com/sharobiddinovjaloliddin97-sudo",
+      linkedin: "https://www.linkedin.com/in/jaloliddin-sharobiddinov-4a4960293/",
       twitter: "https://twitter.com",
       telegram: "https://t.me"
     },
     stats: [
-      { value: "28+", label: "Completed Projects" },
-      { value: "4+", label: "Years Experience" },
-      { value: "1.4k+", label: "Git Commits" },
+      { value: "5+", label: "Production Projects" },
+      { value: "3+", label: "Years Experience" },
+      { value: "1.2k+", label: "Git Commits" },
       { value: "100%", label: "Client Satisfaction" }
     ]
   },
@@ -30,131 +30,109 @@ const portfolioData = {
     { id: "all", label: "All Projects" },
     { id: "fullstack", label: "Full Stack" },
     { id: "frontend", label: "Frontend / UI" },
-    { id: "mobile", label: "Mobile Apps" },
-    { id: "devops", label: "Cloud & DevOps" },
-    { id: "tools", label: "Developer Tools" }
+    { id: "tools", label: "Telegram Bots & Tools" }
   ],
 
   projects: [
     {
-      id: "aether-ai",
-      title: "Aether AI Analytics Hub",
-      subtitle: "Enterprise telemetry & real-time predictive model observability platform",
+      id: "velmora-ecommerce",
+      title: "Velmora E-Commerce Platform",
+      subtitle: "Production-ready bilingual e-commerce suite with Django REST, React & PostgreSQL",
       category: "fullstack",
-      image: "assets/project-ai.jpg",
-      metric: "⚡ 94.8% Accuracy • 12.6K req/min",
-      tags: ["React", "TypeScript", "Node.js", "Python", "WebSockets", "Chart.js"],
-      overview: "An enterprise-grade telemetry platform providing live observability into production AI inference pipelines, accuracy trends, latency distributions, and proactive anomaly warnings.",
-      problem: "Monitoring complex distributed machine learning models in production often lacks live unified telemetry, resulting in undetected performance degradation and latency drift.",
-      solution: "Engineered a low-latency streaming analytics suite utilizing WebSocket push streams, automated drift alerts, and high-density visualizers for data science teams.",
-      features: [
-        "Real-time bi-directional telemetry streaming via WebSockets",
-        "Dynamic 3D inference topology mapping and data flow visualizer",
-        "Automated drift detection with intelligent Slack/Discord webhook alerts",
-        "Full audit logging, compliance tracking, and CSV/PDF report generation"
-      ],
-      demoUrl: "https://example.com/demo-aether",
-      githubUrl: "https://github.com/example/aether-ai"
-    },
-    {
-      id: "stride-luxe",
-      title: "Stride Luxe 3D Showcase",
-      subtitle: "Interactive WebGL 3D footwear customizer and luxury e-commerce engine",
-      category: "frontend",
       image: "assets/project-ecommerce.jpg",
-      metric: "★ 4.9 Rating • 45% Conversion Lift",
-      tags: ["JavaScript", "Three.js", "WebGL", "CSS3 Glass", "Stripe API"],
-      overview: "A visually breathtaking e-commerce boutique featuring 360-degree interactive 3D product manipulation, dynamic custom leather texturing, and frictionless cart checkout.",
-      problem: "Traditional flat photos fail to convey tactile product luxury, resulting in high return rates and lower customer checkout confidence.",
-      solution: "Created an optimized WebGL viewport rendering responsive 3D assets with real-time lighting adjustments and an intuitive customizer drawer.",
+      metric: "🛍️ Live on Vercel • Bilingual (UZ/RU)",
+      tags: ["React", "Vite", "Tailwind CSS", "Django", "Django REST", "PostgreSQL", "JWT"],
+      overview: "Velmora is a production-ready bilingual e-commerce web platform engineered with React (Vite) and Django REST Framework, featuring localized shopping, cart checkout, and JWT authentication.",
+      problem: "Online stores often struggle with clunky multi-language support and slow catalog queries on high-traffic product pages.",
+      solution: "Engineered a decoupled React frontend styled with Tailwind CSS, backed by a high-throughput Django REST API and PostgreSQL database with Swagger documentation.",
       features: [
-        "Photorealistic 360-degree interactive 3D sneaker mesh inspection",
-        "Custom leather and sole texture selector with instant colorway preview",
-        "Glassmorphism slide-out shopping bag with instant subtotal recalculations",
-        "Achieved 60 FPS animation performance on mobile and desktop viewports"
+        "Bilingual user interface supporting Uzbek and Russian localized shopping",
+        "High-performance React + Vite frontend with Tailwind CSS styling",
+        "Django REST Framework backend with Swagger and OpenAPI documentation",
+        "Production PostgreSQL database with JWT session authentication and secure checkout"
       ],
-      demoUrl: "https://example.com/demo-stride",
-      githubUrl: "https://github.com/example/stride-luxe"
+      demoUrl: "https://velmora-ecommerce-chi.vercel.app",
+      githubUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/velmora-ecommerce"
     },
     {
-      id: "cryptobank-hub",
-      title: "CryptoBank & FinTech Hub",
-      subtitle: "Digital asset management & unified fiat/crypto financial command center",
-      category: "fullstack",
+      id: "agrobank-attendance",
+      title: "Agrobank Attendance & Employee Analytics",
+      subtitle: "Bank employee check-in monitoring, biometric/E-IMZO auth & attendance analytics",
+      category: "frontend",
       image: "assets/project-fintech.jpg",
-      metric: "🔒 $84K+ Net Worth Tracked • Bank-Grade Security",
-      tags: ["React", "Next.js", "Web3.js", "PostgreSQL", "TailwindCSS", "ApexCharts"],
-      overview: "A comprehensive wealth management application bridging traditional bank integrations with decentralized multi-chain crypto wallet portfolios.",
-      problem: "Investors must juggle disparate banking apps and Web3 wallets to obtain a complete view of their net worth, spending habits, and asset allocations.",
-      solution: "Consolidated bank APIs and blockchain RPC nodes into an encrypted single-pane dashboard featuring automated categorization and real-time market valuations.",
+      metric: "🏦 Enterprise HR Tool • E-IMZO Auth",
+      tags: ["JavaScript", "HTML5", "CSS3", "Chart.js", "E-IMZO", "REST API"],
+      overview: "An enterprise bank employee attendance and workforce analytics dashboard designed to monitor employee check-ins, late arrivals, and personnel department metrics in real-time.",
+      problem: "Manual employee attendance tracking across bank branches causes latency in HR payroll calculations and attendance verification.",
+      solution: "Created an intuitive bank portal interface with secure authorization, E-IMZO digital signature integration, and live statistical charts.",
       features: [
-        "Automated traditional bank syncing and real-time blockchain balance pulls",
-        "Categorized monthly expense breakdown with predictive cashflow insights",
-        "Biometric 2FA authentication, AES-256 encrypted session storage",
-        "One-click atomic token exchange with lowest-gas route calculations"
+        "Modern authentication with E-IMZO digital signature integration",
+        "Real-time attendance timeline tracking (check-in / check-out timestamps)",
+        "Department-level workforce analytics and late arrival warning indicators",
+        "Fully responsive unscrollable dashboard layout optimized for corporate workstations"
       ],
-      demoUrl: "https://example.com/demo-cryptobank",
-      githubUrl: "https://github.com/example/cryptobank"
+      demoUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/agrobank-attendance",
+      githubUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/agrobank-attendance"
     },
     {
-      id: "nexus-cloud-mesh",
-      title: "Nexus Cloud DevOps Mesh",
-      subtitle: "Kubernetes topology visualizer & zero-downtime CI/CD canary orchestrator",
-      category: "devops",
-      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%230f172a'/><circle cx='400' cy='225' r='120' fill='none' stroke='%236366f1' stroke-width='2' stroke-dasharray='6,6'/><circle cx='400' cy='225' r='180' fill='none' stroke='%2306b6d4' stroke-width='1.5' opacity='0.4'/><circle cx='400' cy='225' r='36' fill='%236366f1' opacity='0.8'/><circle cx='280' cy='150' r='24' fill='%2306b6d4'/><circle cx='520' cy='150' r='24' fill='%2310b981'/><circle cx='280' cy='300' r='24' fill='%23a855f7'/><circle cx='520' cy='300' r='24' fill='%23f59e0b'/><line x1='400' y1='225' x2='280' y2='150' stroke='%236366f1' stroke-width='2'/><line x1='400' y1='225' x2='520' y2='150' stroke='%2310b981' stroke-width='2'/><line x1='400' y1='225' x2='280' y2='300' stroke='%23a855f7' stroke-width='2'/><line x1='400' y1='225' x2='520' y2='300' stroke='%23f59e0b' stroke-width='2'/><text x='400' y='410' fill='%2394a3b8' font-family='sans-serif' font-size='18' text-anchor='middle' font-weight='bold'>NEXUS KUBERNETES TOPOLOGY</text></svg>",
-      metric: "🚀 99.99% Uptime • Automated Canaries",
-      tags: ["Go", "Kubernetes", "Docker", "Prometheus", "GraphQL", "Helm"],
-      overview: "A developer-first cluster health tool that renders distributed microservice dependencies, container memory allocations, and automated canary deployments.",
-      problem: "Debugging microservice cascades across hundreds of pods during deployment rollouts requires navigating multiple disparate logs and CLI tools.",
-      solution: "Built a graphical topology inspector mapping real-time inter-pod traffic, error rates, and automated circuit breakers.",
-      features: [
-        "Live node dependency graph displaying error rates and packet latency",
-        "Automated canary deployments with automatic rollbacks upon threshold breaches",
-        "Prometheus metric ingestion with sub-second cluster query rendering",
-        "Role-based access control (RBAC) and team namespace isolation"
-      ],
-      demoUrl: "https://example.com/demo-nexus",
-      githubUrl: "https://github.com/example/nexus-mesh"
-    },
-    {
-      id: "hyperfast-cli",
-      title: "HyperFast Asset Compiler",
-      subtitle: "High-performance Rust-powered web asset minifier & tree-shaker",
+      id: "spyfall-bot",
+      title: "Spyfall (Shpion) Telegram Bot Game",
+      subtitle: "Asynchronous multiplayer party game bot powered by Python & python-telegram-bot",
       category: "tools",
-      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%23111827'/><rect x='80' y='60' width='640' height='330' rx='16' fill='%231f2937' stroke='%23374151' stroke-width='2'/><circle cx='115' cy='95' r='6' fill='%23ef4444'/><circle cx='135' cy='95' r='6' fill='%23f59e0b'/><circle cx='155' cy='95' r='6' fill='%2310b981'/><text x='115' y='160' fill='%2322d3ee' font-family='monospace' font-size='16'>$ hyperfast build --prod --parallel</text><text x='115' y='200' fill='%2310b981' font-family='monospace' font-size='16'>✔ Parsed 4,280 modules in 42ms</text><text x='115' y='240' fill='%2310b981' font-family='monospace' font-size='16'>✔ Tree-shaking eliminated 64.2% unused code</text><text x='115' y='280' fill='%2310b981' font-family='monospace' font-size='16'>✔ Compressed assets to brotli (98.4 KB total)</text><text x='115' y='325' fill='%23f8fafc' font-family='monospace' font-size='18' font-weight='bold'>⚡ Build finished in 184ms [12x faster]</text></svg>",
-      metric: "⚡ 12x Faster than Webpack • 85k+ Downloads",
-      tags: ["Rust", "WebAssembly", "Node.js", "CLI", "V8 Engine"],
-      overview: "An open-source developer toolchain engineered to bundle, minify, and transpile modern TypeScript and CSS codebases using multi-core Rust concurrency.",
-      problem: "Sluggish JavaScript build tools slow down developer feedback loops on expansive repositories containing thousands of modules.",
-      solution: "Engineered parallelized Rust compilation pipelines that operate directly on memory buffers with zero unnecessary disk I/O.",
+      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%230f172a'/><circle cx='400' cy='190' r='90' fill='%236366f1' opacity='0.2'/><circle cx='400' cy='190' r='60' fill='none' stroke='%23818cf8' stroke-width='4'/><polygon points='400,150 420,210 380,210' fill='%23ec4899'/><text x='400' y='325' fill='%23ffffff' font-family='sans-serif' font-size='26' font-weight='bold' text-anchor='middle'>SPYFALL TELEGRAM GAME</text><text x='400' y='360' fill='%2394a3b8' font-family='sans-serif' font-size='16' text-anchor='middle'>Async Multiplayer • Python 3.11 • Zero AI Cost</text></svg>",
+      metric: "🎮 Async Group Game • 0% AI Cost",
+      tags: ["Python 3.11", "python-telegram-bot", "AsyncIO", "Telegram API"],
+      overview: "An asynchronous group game bot based on the popular Spyfall social deduction game, running entirely on pure Python game logic without requiring external AI credits.",
+      problem: "Organizing social deduction board games online often requires complex third-party apps with high latency and expensive API subscriptions.",
+      solution: "Engineered an event-driven Telegram bot using python-telegram-bot v21 that manages room lobbies, secret role distribution, and voting rounds directly inside Telegram groups.",
       features: [
-        "Near-instantaneous incremental rebuilds in under 20 milliseconds",
-        "Native WebAssembly and C-ABI bindings for seamless Node integration",
-        "Automated modern image conversion pipeline (WebP & AVIF)",
-        "Zero-configuration intelligent entrypoint detection"
+        "Multiplayer group lobby creation with automatic secret role assignment",
+        "Asynchronous non-blocking game loops powered by Python 3.11 AsyncIO",
+        "Pure Python deterministic game logic with zero external AI API costs",
+        "Interactive inline buttons for voting, timer alerts, and spy reveal"
       ],
-      demoUrl: "https://example.com/demo-hyperfast",
-      githubUrl: "https://github.com/example/hyperfast-cli"
+      demoUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/Spyfall",
+      githubUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/Spyfall"
     },
     {
-      id: "zenith-health",
-      title: "Zenith Mobile Health Tracker",
-      subtitle: "Biometric activity monitor & AI wellness recommendation application",
-      category: "mobile",
-      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%230b0f19'/><rect x='280' y='40' width='240' height='370' rx='28' fill='%231a2234' stroke='%2338bdf8' stroke-width='2'/><circle cx='400' cy='150' r='55' fill='none' stroke='%23ec4899' stroke-width='10' stroke-dasharray='260,70'/><circle cx='400' cy='150' r='40' fill='none' stroke='%2310b981' stroke-width='8' stroke-dasharray='180,60'/><text x='400' y='157' fill='%23ffffff' font-family='sans-serif' font-size='18' text-anchor='middle' font-weight='bold'>8,420</text><text x='400' y='175' fill='%2394a3b8' font-family='sans-serif' font-size='10' text-anchor='middle'>STEPS</text><rect x='305' y='235' width='190' height='45' rx='10' fill='%2322304d'/><text x='325' y='262' fill='%23f8fafc' font-family='sans-serif' font-size='13' font-weight='bold'>Sleep Score: 92%</text><rect x='305' y='295' width='190' height='45' rx='10' fill='%2322304d'/><text x='325' y='322' fill='%23f8fafc' font-family='sans-serif' font-size='13' font-weight='bold'>Heart Rate: 64 bpm</text></svg>",
-      metric: "📱 50K+ Active Users • HealthKit Sync",
-      tags: ["React Native", "TypeScript", "Expo", "HealthKit", "SQLite"],
-      overview: "A sleek cross-platform wellness application that synchronizes with smartwatch sensors to deliver actionable recovery guidance and nutrition advice.",
-      problem: "Complex biometric telemetry often overwhelms users without translating health data into daily actionable improvements.",
-      solution: "Synthesized heart rate variability, sleep stages, and activity scores into an intuitive visual recovery ring with contextual AI tips.",
+      id: "velmora-bot",
+      title: "Velmora E-Commerce Telegram Store Bot",
+      subtitle: "Telegram storefront bot bridging chat ordering with Django e-commerce backend",
+      category: "tools",
+      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%23111827'/><rect x='280' y='80' width='240' height='270' rx='24' fill='%231f2937' stroke='%2306b6d4' stroke-width='3'/><circle cx='400' cy='170' r='40' fill='%2306b6d4' opacity='0.3'/><path d='M380 190 L400 160 L420 190' fill='none' stroke='%2306b6d4' stroke-width='4'/><text x='400' y='300' fill='%2322d3ee' font-family='sans-serif' font-size='20' font-weight='bold' text-anchor='middle'>VELMORA STORE BOT</text><text x='400' y='400' fill='%2394a3b8' font-family='sans-serif' font-size='16' text-anchor='middle'>In-Chat Storefront • Django REST Integration</text></svg>",
+      metric: "🛒 In-Chat Storefront • Instant Ordering",
+      tags: ["Python", "python-telegram-bot", "Django REST API", "Webhooks", "E-Commerce"],
+      overview: "A dedicated Telegram bot client designed for the Velmora E-Commerce ecosystem, enabling customers to browse product catalogs, check stock, and place orders directly within Telegram.",
+      problem: "Many customers in Central Asia prefer ordering directly through Telegram messaging rather than navigating standalone web browsers.",
+      solution: "Engineered an in-chat conversational storefront connecting directly to Velmora's backend REST API with product cards, cart management, and order notifications.",
       features: [
-        "Real-time Apple HealthKit and Google Fit sensor synchronization",
-        "Adaptive sleep score calculation with circadian rhythm mapping",
-        "Social challenge boards, streak tracking, and achievement badges",
-        "Offline-first architecture with localized SQLite persistence"
+        "Interactive product catalog browsing with image previews and size variants",
+        "Seamless synchronization with Velmora Django backend product database",
+        "In-chat cart manipulation with total price calculations and promo codes",
+        "Automated admin order alert dispatches upon checkout completion"
       ],
-      demoUrl: "https://example.com/demo-zenith",
-      githubUrl: "https://github.com/example/zenith-health"
+      demoUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/velmora_bot",
+      githubUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/velmora_bot"
+    },
+    {
+      id: "family-birthday-bot",
+      title: "Family Birthday & Event Reminder Bot",
+      subtitle: "Automated event scheduler & birthday notification bot with SQLite and aiohttp webhooks",
+      category: "tools",
+      image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><rect width='100%' height='100%' fill='%231e1b4b'/><rect x='260' y='65' width='280' height='260' rx='20' fill='%23312e81' stroke='%23a855f7' stroke-width='2'/><circle cx='350' cy='155' r='18' fill='%23ec4899'/><circle cx='450' cy='155' r='18' fill='%2310b981'/><rect x='320' y='205' width='160' height='24' rx='6' fill='%236366f1'/><text x='400' y='375' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold' text-anchor='middle'>FAMILY BIRTHDAY REMINDER</text><text x='400' y='410' fill='%23c084fc' font-family='sans-serif' font-size='15' text-anchor='middle'>Automated Calendar Scheduler • SQLite & aiohttp</text></svg>",
+      metric: "🎂 Automated Reminders • 24/7 Webhook",
+      tags: ["Python 3.11", "python-telegram-bot", "SQLite", "APScheduler", "aiohttp"],
+      overview: "An automated Telegram assistant built to remember family birthdays, anniversaries, and custom recurrent events, dispatching timed congratulatory notifications to groups and private chats.",
+      problem: "Remembering recurring family birthdays and important milestone anniversaries is easy to forget across busy schedules and distributed family groups.",
+      solution: "Built a background scheduling engine with APScheduler and SQLite persistence that checks event calendars daily and pushes proactive morning reminder cards.",
+      features: [
+        "Smart recurring reminder scheduler with timezone-aware notification triggers",
+        "Persistent event database storing birthdates and anniversary milestones via SQLite",
+        "Integrated aiohttp web server keeping the bot active 24/7 on free cloud hosts",
+        "Intuitive Telegram bot commands for adding, listing, and removing upcoming dates"
+      ],
+      demoUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/FamilyBirthdayBot",
+      githubUrl: "https://github.com/sharobiddinovjaloliddin97-sudo/FamilyBirthdayBot"
     }
   ],
 
@@ -163,68 +141,62 @@ const portfolioData = {
       category: "Frontend Engineering",
       icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
       items: [
-        { name: "JavaScript (ES6+) & TypeScript", level: 95 },
-        { name: "React, Next.js & Vue", level: 92 },
-        { name: "Modern CSS3, SCSS & Responsive Grid", level: 95 },
-        { name: "Three.js, WebGL & Canvas Graphics", level: 80 }
+        { name: "JavaScript (ES6+) & TypeScript", level: 92 },
+        { name: "React, Vite & Next.js", level: 90 },
+        { name: "Tailwind CSS & Responsive UI", level: 95 },
+        { name: "Chart.js & Dashboard Graphics", level: 85 }
       ]
     },
     {
-      category: "Backend & Systems",
+      category: "Backend & Python Ecosystem",
       icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>`,
       items: [
-        { name: "Node.js & Express / NestJS", level: 90 },
-        { name: "Python, FastAPI & AsyncIO", level: 88 },
-        { name: "RESTful APIs & GraphQL", level: 92 },
-        { name: "Microservices & WebSockets", level: 85 }
+        { name: "Python 3.11 & AsyncIO", level: 95 },
+        { name: "Django & Django REST Framework", level: 92 },
+        { name: "Node.js & Express API", level: 88 },
+        { name: "python-telegram-bot & Webhooks", level: 96 }
       ]
     },
     {
-      category: "Cloud, DevOps & Data",
+      category: "Databases & Cloud Architecture",
       icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`,
       items: [
-        { name: "Docker, Kubernetes & Containerization", level: 84 },
-        { name: "PostgreSQL, MongoDB & Redis", level: 88 },
-        { name: "AWS & Cloudflare Edge Deployments", level: 82 },
-        { name: "CI/CD Pipelines (GitHub Actions)", level: 86 }
+        { name: "PostgreSQL & SQLite Database", level: 90 },
+        { name: "Docker & Container Deployments", level: 85 },
+        { name: "Railway, Vercel & Cloudflare", level: 92 },
+        { name: "Git, GitHub CI/CD & APIs", level: 90 }
       ]
     },
     {
-      category: "UI/UX & Architecture",
+      category: "Security & Systems",
       icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
       items: [
-        { name: "Design Systems & Component Architecture", level: 94 },
-        { name: "Performance Optimization & SEO Auditing", level: 92 },
-        { name: "Web Accessibility (WCAG 2.1)", level: 88 },
-        { name: "Figma UI Prototyping", level: 85 }
+        { name: "JWT Authentication & Security", level: 92 },
+        { name: "E-IMZO Digital Signature Auth", level: 86 },
+        { name: "RESTful API Architecture", level: 94 },
+        { name: "Webhooks & Event Schedulers", level: 90 }
       ]
     }
   ],
 
   experience: [
     {
-      role: "Lead Full-Stack Developer",
-      company: "Apex Tech Innovations",
-      period: "2023 - Present",
-      description: "Spearheading engineering efforts for cloud enterprise applications, mentoring junior engineers, and architecting real-time WebSocket systems serving over 150,000 monthly active users."
+      role: "Full-Stack Software Engineer",
+      company: "Velmora E-Commerce",
+      period: "2024 - Present",
+      description: "Spearheaded development of a bilingual e-commerce platform with React Vite and Django REST Framework, integrating Telegram ordering bots and PostgreSQL database."
     },
     {
-      role: "Senior Frontend Engineer",
-      company: "Nova Digital Labs",
-      period: "2021 - 2023",
-      description: "Engineered scalable component libraries, reduced First Contentful Paint by 42%, and delivered flagship e-commerce platforms with interactive 3D WebGL interfaces."
+      role: "Frontend & Banking Portal Developer",
+      company: "Banking & Enterprise Solutions",
+      period: "2023 - 2024",
+      description: "Developed employee attendance tracking portals and corporate HR dashboards featuring E-IMZO digital signature authorization and live statistical charts."
     },
     {
-      role: "Full-Stack Web Developer",
-      company: "Craft Code Studio",
-      period: "2020 - 2021",
-      description: "Developed custom client portals, integrated secure payment gateways, and configured automated CI/CD deployment pipelines on AWS."
-    },
-    {
-      role: "B.S. in Computer Science & Engineering",
-      company: "State Technical University",
-      period: "2016 - 2020",
-      description: "Graduated with honors. Focused on algorithms, distributed databases, human-computer interaction, and software design patterns."
+      role: "Python Telegram Bot Developer",
+      company: "Independent Projects & Open Source",
+      period: "2022 - Present",
+      description: "Engineered scalable asynchronous Telegram bots for multiplayer gaming (Spyfall), automated birthday schedulers with APScheduler, and store management bots."
     }
   ]
 };
