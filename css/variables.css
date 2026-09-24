@@ -1,0 +1,106 @@
+/* ==========================================================================
+   DESIGN TOKENS & SYSTEM VARIABLES
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Sizing & Spacing */
+  --container-max: 1240px;
+  --container-narrow: 960px;
+  --header-height: 72px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 14px;
+  --border-radius-lg: 20px;
+  --border-radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Shared Accents (Brand Identity) */
+  --primary-500: #6366f1; /* Indigo */
+  --primary-600: #4f46e5;
+  --primary-400: #818cf8;
+  --secondary-500: #06b6d4; /* Cyan */
+  --secondary-400: #22d3ee;
+  --accent-purple: #a855f7;
+  --accent-pink: #ec4899;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+}
+
+/* ==========================================================================
+   DARK THEME (Default)
+   ========================================================================== */
+[data-theme="dark"], :root {
+  --bg-body: #0b0f19;
+  --bg-surface: #111827;
+  --bg-surface-elevated: #1a2234;
+  --bg-surface-card: rgba(22, 30, 46, 0.75);
+  --bg-surface-glass: rgba(17, 24, 39, 0.7);
+  --bg-surface-hover: rgba(255, 255, 255, 0.04);
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --border-highlight: rgba(99, 102, 241, 0.4);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverted: #0f172a;
+
+  --badge-bg: rgba(99, 102, 241, 0.12);
+  --badge-text: #a5b4fc;
+  --badge-border: rgba(99, 102, 241, 0.25);
+
+  --gradient-brand: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15), transparent 70%);
+  --gradient-card-overlay: linear-gradient(180deg, transparent 50%, rgba(11, 15, 25, 0.95) 100%);
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 35px -5px rgba(99, 102, 241, 0.3);
+  --shadow-emerald-glow: 0 0 20px -2px rgba(16, 185, 129, 0.4);
+}
+
+/* ==========================================================================
+   LIGHT THEME
+   ========================================================================== */
+[data-theme="light"] {
+  --bg-body: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-surface-card: rgba(255, 255, 255, 0.85);
+  --bg-surface-glass: rgba(255, 255, 255, 0.8);
+  --bg-surface-hover: rgba(0, 0, 0, 0.03);
+
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --border-highlight: rgba(79, 70, 229, 0.35);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-inverted: #f8fafc;
+
+  --badge-bg: rgba(99, 102, 241, 0.08);
+  --badge-text: #4f46e5;
+  --badge-border: rgba(99, 102, 241, 0.2);
+
+  --gradient-brand: linear-gradient(135deg, #4f46e5 0%, #0284c7 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08), transparent 70%);
+  --gradient-card-overlay: linear-gradient(180deg, transparent 50%, rgba(255, 255, 255, 0.95) 100%);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 30px -5px rgba(99, 102, 241, 0.18);
+  --shadow-emerald-glow: 0 0 18px -2px rgba(16, 185, 129, 0.3);
+}

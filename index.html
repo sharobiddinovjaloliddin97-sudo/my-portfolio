@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaloliddin | Full-Stack Software Engineer & Creative Developer</title>
+  <meta name="description"
+    content="Personal portfolio and project showcase of Jaloliddin. Full-Stack Engineer specializing in high-performance web applications, cloud systems, and modern UI/UX.">
+  <meta name="keywords"
+    content="Portfolio, Full-Stack Developer, Web Developer, React, Node.js, JavaScript, Python, UI/UX, Software Engineer">
+  <meta name="author" content="Jaloliddin">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jaloliddin | Full-Stack Software Engineer">
+  <meta property="og:description"
+    content="Explore production applications, open-source projects, and technical skills.">
+  <meta property="og:image" content="assets/project-ai.jpg">
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       SITE HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#hero" class="nav-brand" aria-label="Home">
+        <span class="brand-icon">J</span>
+        <span class="brand-name dynamic-name">Jaloliddin</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">About</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experience" class="nav-link">Journey</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons & Theme Switcher -->
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="#contact" class="btn btn-primary btn-sm btn-hire">Hire Me</a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobile-toggle" class="mobile-toggle" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-top">
+      <ul class="mobile-nav-links">
+        <li><a href="#hero" class="mobile-nav-link">About</a></li>
+        <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+        <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+        <li><a href="#experience" class="mobile-nav-link">Journey</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+    <div class="mobile-drawer-bottom">
+      <a href="#contact" class="btn btn-primary" style="width: 100%;">Get in Touch</a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       HERO / INTRODUCTION SECTION
+       ========================================================================== -->
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <!-- Availability Badge -->
+          <div class="hero-status-pill">
+            <span class="status-dot"></span>
+            <span id="status-badge-text">Available for new opportunities</span>
+          </div>
+
+          <!-- Main Hero Title -->
+          <h1 class="hero-title">
+            Crafting Scalable Code & <br>
+            <span class="text-gradient">Dynamic Web Experiences</span>
+          </h1>
+
+          <!-- Role Badges -->
+          <div class="hero-roles">
+            <span class="role-badge">Full-Stack Engineer</span>
+            <span class="role-badge">UI/UX Architect</span>
+            <span class="role-badge">Cloud Practitioner</span>
+          </div>
+
+          <!-- Bio Description -->
+          <p id="hero-bio" class="hero-desc">
+            Passionate software engineer dedicated to building high-performance web applications, scalable distributed
+            architectures, and visually captivating digital experiences.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <span>Explore Projects</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            <a href="#projects" class="btn btn-outline">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Resume / CV</span>
+            </a>
+          </div>
+
+          <!-- Stats Grid -->
+          <div id="hero-stats-container" class="hero-stats">
+            <!-- Dynamically populated from JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PROJECTS SHOWCASE SECTION
+         ========================================================================== -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Portfolio & Showcase</div>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle">
+            Explore a curated selection of full-stack platforms, client projects, and open-source software tools.
+          </p>
+        </div>
+
+        <!-- Project Filtering Toolbar -->
+        <div class="projects-toolbar">
+          <!-- Live Keyword Search -->
+          <div class="search-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="search-input" class="search-input"
+              placeholder="Search by title, technology, or keyword (e.g. React, Docker, 3D)..." autocomplete="off">
+            <button id="clear-search-btn" class="search-clear-btn" aria-label="Clear Search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Category Chips -->
+          <div id="filter-tabs" class="filter-tabs">
+            <!-- Dynamically populated from JS -->
+          </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div id="projects-container" class="projects-grid">
+          <!-- Dynamically populated from JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SKILLS MATRIX SECTION
+         ========================================================================== -->
+    <section id="skills" class="section" style="background-color: var(--bg-surface-elevated);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Technical Arsenal</div>
+          <h2 class="section-title">Skills & Modern Technologies</h2>
+          <p class="section-subtitle">
+            Battle-tested technologies and design systems I leverage to build robust, scalable applications.
+          </p>
+        </div>
+
+        <!-- Skills Grid Container -->
+        <div id="skills-container" class="skills-grid">
+          <!-- Dynamically populated from JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         JOURNEY & TIMELINE SECTION
+         ========================================================================== -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Experience & Background</div>
+          <h2 class="section-title">Career Milestones</h2>
+          <p class="section-subtitle">
+            A chronological timeline of engineering roles, achievements, and educational foundation.
+          </p>
+        </div>
+
+        <!-- Timeline Container -->
+        <div id="timeline-container" class="timeline-container">
+          <!-- Dynamically populated from JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT SECTION
+         ========================================================================== -->
+    <section id="contact" class="section" style="background-color: var(--bg-surface-elevated);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Let's Connect</div>
+          <h2 class="section-title">Start a Conversation</h2>
+          <p class="section-subtitle">
+            Looking for a dedicated software engineer, have a project proposal, or just want to talk tech? Drop a
+            message!
+          </p>
+        </div>
+
+        <div class="contact-wrapper">
+          <!-- Contact Quick Info -->
+          <div class="contact-info-card">
+            <div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Contact Information</h3>
+              <p style="font-size: 0.95rem; color: var(--text-secondary);">
+                Feel free to reach out directly via email, phone, or any of the social platforms below. I typically
+                respond within 24 hours.
+              </p>
+            </div>
+
+            <div class="contact-methods-list">
+              <!-- Email item -->
+              <div class="contact-method-item">
+                <div class="contact-method-meta">
+                  <div class="contact-method-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-method-label">Email Address</div>
+                    <div id="contact-email-text" class="contact-method-val">jaloliddin.dev@example.com</div>
+                  </div>
+                </div>
+                <button class="copy-btn" data-copy-target="contact-email-text">Copy</button>
+              </div>
+
+              <!-- Phone item -->
+              <div class="contact-method-item">
+                <div class="contact-method-meta">
+                  <div class="contact-method-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-method-label">Phone Number</div>
+                    <div id="contact-phone-text" class="contact-method-val">+1 (555) 789-0123</div>
+                  </div>
+                </div>
+                <button class="copy-btn" data-copy-target="contact-phone-text">Copy</button>
+              </div>
+
+              <!-- Location item -->
+              <div class="contact-method-item">
+                <div class="contact-method-meta">
+                  <div class="contact-method-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-method-label">Location</div>
+                    <div class="contact-method-val">Global / Open to Relocation & Remote</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-card">
+            <form id="contact-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="contact-name" class="form-label">Your Name</label>
+                  <input type="text" id="contact-name" class="form-input" placeholder="e.g. Sarah Connor" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-email" class="form-label">Email Address</label>
+                  <input type="email" id="contact-email" class="form-input" placeholder="name@domain.com" required>
+                </div>
+                <div class="form-group full-width">
+                  <label for="contact-subject" class="form-label">Subject</label>
+                  <input type="text" id="contact-subject" class="form-input"
+                    placeholder="Project Inquiry / Job Opportunity" required>
+                </div>
+                <div class="form-group full-width">
+                  <label for="contact-message" class="form-label">Message</label>
+                  <textarea id="contact-message" class="form-textarea"
+                    placeholder="Tell me about your project, timeline, or requirements..." required></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-icon">J</span>
+        <span class="brand-name dynamic-name">Jaloliddin</span>
+      </a>
+
+      <p style="max-width: 500px; color: var(--text-secondary); font-size: 0.95rem;">
+        Building resilient web software and memorable user experiences. Always striving for clean code, high speed, and
+        thoughtful design.
+      </p>
+
+      <!-- Social Media Icons -->
+      <div class="footer-socials">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link"
+          aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link"
+          aria-label="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+          </svg>
+        </a>
+        <a href="mailto:jaloliddin.dev@example.com" class="social-link" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Jaloliddin. Built with modern HTML5, CSS3 & JavaScript.</div>
+        <div style="display: flex; gap: 1.25rem; align-items: center;">
+          <a href="admin.html" target="_blank"
+            style="color: var(--text-muted); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.35rem;"
+            title="Manage portfolio content">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>Admin</span>
+          </a>
+          <a href="#hero" style="color: var(--text-muted);">Back to top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       PROJECT DETAILS MODAL
+       ========================================================================== -->
+  <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close Case Study Modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="modal-banner">
+        <img id="modal-banner-img" src="" alt="Project Visual Preview">
+      </div>
+
+      <div class="modal-content-area">
+        <div class="modal-header-info">
+          <span id="modal-category" class="section-badge"
+            style="width: fit-content; margin-bottom: 0.5rem;">Category</span>
+          <h2 id="modal-title" class="modal-title">Project Title</h2>
+          <p id="modal-subtitle" class="modal-subtitle">Project Subtitle</p>
+        </div>
+
+        <div class="modal-metric-bar">
+          <div class="modal-metric-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-400)" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+            <span id="modal-metric-text">Metric</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="modal-section-title">Overview</h4>
+          <p id="modal-overview-text" style="color: var(--text-secondary); line-height: 1.6;"></p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <div
+            style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--border-radius-md); border: 1px solid var(--border-subtle);">
+            <h4 style="font-size: 1rem; color: var(--accent-pink); margin-bottom: 0.5rem;">The Challenge</h4>
+            <p id="modal-problem-text" style="font-size: 0.9rem; color: var(--text-secondary);"></p>
+          </div>
+          <div
+            style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--border-radius-md); border: 1px solid var(--border-subtle);">
+            <h4 style="font-size: 1rem; color: var(--accent-emerald); margin-bottom: 0.5rem;">The Solution</h4>
+            <p id="modal-solution-text" style="font-size: 0.9rem; color: var(--text-secondary);"></p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="modal-section-title">Key Architectural Features</h4>
+          <ul id="modal-features-list" class="modal-features-list"></ul>
+        </div>
+
+        <div>
+          <h4 class="modal-section-title">Technologies Leveraged</h4>
+          <div id="modal-tags" class="card-tags"></div>
+        </div>
+
+        <div class="modal-actions">
+          <a id="modal-demo-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <span>Launch Live Demo</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+          <a id="modal-github-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+            </svg>
+            <span>View Source Code</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <!-- JavaScript Modules -->
+  <script src="js/projects-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

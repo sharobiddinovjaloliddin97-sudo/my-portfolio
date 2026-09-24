@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Admin Dashboard | Jaloliddin</title>
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ==========================================================================
+       AUTHENTICATION PIN OVERLAY
+       ========================================================================== -->
+  <div id="auth-overlay" class="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <h2 class="auth-title">Admin Access Required</h2>
+      <p class="auth-subtitle">Enter your 4-digit security PIN to manage your portfolio projects and profile settings.</p>
+      
+      <div class="pin-input-group">
+        <input 
+          type="password" 
+          id="pin-input" 
+          class="pin-input" 
+          placeholder="••••" 
+          maxlength="8" 
+          autocomplete="off"
+        >
+        <p id="auth-error" class="auth-error">Incorrect PIN. Please try again.</p>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem;">Default Security PIN: <strong>1234</strong></p>
+      </div>
+
+      <button id="auth-submit-btn" class="btn btn-primary" style="width: 100%;">
+        <span>Unlock Dashboard</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TOP ADMIN HEADER
+       ========================================================================== -->
+  <header class="admin-header">
+    <div class="admin-nav-wrap">
+      <div class="admin-brand">
+        <span class="brand-icon">J</span>
+        <span>Portfolio Admin</span>
+        <span class="admin-badge">Management Console</span>
+      </div>
+
+      <div class="admin-actions">
+        <a href="index.html" target="_blank" class="btn btn-secondary btn-sm" title="Open portfolio website">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span>View Live Site</span>
+        </a>
+
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme" title="Toggle Theme">
+          <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <button id="logout-btn" class="btn btn-outline btn-sm" title="Lock Admin Panel">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Lock</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       ADMIN MAIN CONTAINER
+       ========================================================================== -->
+  <main class="admin-container">
+    <!-- Header title -->
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size: 2.2rem; margin-bottom: 0.4rem;">Portfolio Command Center</h1>
+      <p style="color: var(--text-secondary);">Manage projects, update biographical data, and synchronize changes instantly with your live portfolio.</p>
+    </div>
+
+    <!-- Metrics Row -->
+    <div class="admin-metrics-grid">
+      <div class="metric-box">
+        <div>
+          <div id="metric-total-projects" class="metric-info-val">0</div>
+          <div class="metric-info-label">Total Projects</div>
+        </div>
+        <div class="skill-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+      </div>
+
+      <div class="metric-box">
+        <div>
+          <div id="metric-total-views" class="metric-info-val">0</div>
+          <div class="metric-info-label">Total Project Views</div>
+        </div>
+        <div class="skill-icon-wrap" style="color: var(--primary-400);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+      </div>
+
+      <div class="metric-box">
+        <div>
+          <div id="metric-total-messages" class="metric-info-val">0</div>
+          <div class="metric-info-label">Messages Inbox</div>
+        </div>
+        <div class="skill-icon-wrap" style="color: var(--accent-pink);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+      </div>
+
+      <div class="metric-box">
+        <div>
+          <div id="metric-server-status" class="metric-info-val" style="color: var(--accent-emerald);">Active</div>
+          <div class="metric-info-label">SQLite & API Server</div>
+        </div>
+        <div class="skill-icon-wrap" style="color: var(--accent-emerald); background: rgba(16, 185, 129, 0.1);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" data-tab="projects">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <span>Projects Manager</span>
+      </button>
+
+      <button class="tab-btn" data-tab="messages">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Messages Inbox</span>
+        <span id="unread-count-badge" class="chip-count" style="display: none; background: var(--accent-pink); color: #fff;">0</span>
+      </button>
+
+      <button class="tab-btn" data-tab="profile">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile & Bio</span>
+      </button>
+
+      <button class="tab-btn" data-tab="export">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Export & Backup</span>
+      </button>
+    </div>
+
+    <!-- ========================================================================
+         TAB 1: PROJECTS MANAGER
+         ======================================================================== -->
+    <div id="tab-projects" class="admin-tab-content">
+      <div class="admin-card">
+        <div class="card-header-flex">
+          <div>
+            <h2 class="card-title">Manage Showcase Projects</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Add, edit, and organize all projects featured on your portfolio.</p>
+          </div>
+          <button id="add-project-btn" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>Add New Project</span>
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Thumbnail</th>
+                <th>Project Details</th>
+                <th>Category</th>
+                <th>Views & Metrics</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="projects-table-body">
+              <!-- Dynamically populated from JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         TAB 2: MESSAGES INBOX
+         ======================================================================== -->
+    <div id="tab-messages" class="admin-tab-content" style="display: none;">
+      <div class="admin-card">
+        <div class="card-header-flex">
+          <div>
+            <h2 class="card-title">Contact Messages Inbox</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Client inquiries, job opportunities, and messages sent via the portfolio contact form.</p>
+          </div>
+          <button id="refresh-messages-btn" class="btn btn-secondary btn-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>Refresh Messages</span>
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Sender</th>
+                <th>Subject & Preview</th>
+                <th>Received</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="messages-table-body">
+              <!-- Dynamically populated from JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         TAB 2: PROFILE & BIO SETTINGS
+         ======================================================================== -->
+    <div id="tab-profile" class="admin-tab-content" style="display: none;">
+      <div class="admin-card" style="max-width: 900px;">
+        <h2 class="card-title" style="margin-bottom: 0.5rem;">Profile & Biographical Settings</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">
+          These details populate the hero header, bio overview, and contact information across the site.
+        </p>
+
+        <form id="profile-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="form-profile-name">Full Name</label>
+              <input type="text" id="form-profile-name" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-profile-title">Professional Title</label>
+              <input type="text" id="form-profile-title" class="form-input" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="form-profile-status">Availability Status Badge</label>
+              <input type="text" id="form-profile-status" class="form-input" placeholder="Available for new opportunities" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="form-profile-bio">Bio / Elevator Pitch</label>
+              <textarea id="form-profile-bio" class="form-textarea" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-profile-email">Email Address</label>
+              <input type="email" id="form-profile-email" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-profile-phone">Phone Number</label>
+              <input type="text" id="form-profile-phone" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-profile-github">GitHub Profile URL</label>
+              <input type="url" id="form-profile-github" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-profile-linkedin">LinkedIn Profile URL</label>
+              <input type="url" id="form-profile-linkedin" class="form-input">
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <button type="submit" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Save Profile Changes</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         TAB 3: EXPORT & BACKUP
+         ======================================================================== -->
+    <div id="tab-export" class="admin-tab-content" style="display: none;">
+      <div class="admin-card" style="max-width: 900px;">
+        <h2 class="card-title" style="margin-bottom: 0.5rem;">Data Export & Code Sync</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
+          Your changes are automatically saved to your browser's local storage. Whenever you want to commit these changes to your Git repository or deploy to Vercel/GitHub Pages, click <strong>"Download File"</strong> and replace <code>js/projects-data.js</code>.
+        </p>
+
+        <div class="code-preview" id="code-preview">// Loading exported code...</div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button id="download-file-btn" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download projects-data.js</span>
+          </button>
+
+          <button id="copy-code-btn" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy Code to Clipboard</span>
+          </button>
+
+          <button id="reset-defaults-btn" class="btn btn-outline" style="color: var(--accent-pink); margin-left: auto;">
+            <span>Reset to Factory Defaults</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       ADD / EDIT PROJECT MODAL
+       ========================================================================== -->
+  <div id="project-edit-modal" class="admin-modal-overlay" role="dialog" aria-modal="true">
+    <div class="admin-modal-dialog">
+      <div class="modal-title-row">
+        <h2 id="modal-form-title" style="font-size: 1.5rem;">Add New Project</h2>
+        <button id="project-modal-close" class="modal-close-btn" aria-label="Close dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <form id="project-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="form-project-title">Project Title</label>
+            <input type="text" id="form-project-title" class="form-input" placeholder="e.g. Aether AI Hub" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-project-category">Category</label>
+            <select id="form-project-category" class="form-input">
+              <option value="fullstack">Full Stack</option>
+              <option value="frontend">Frontend / UI</option>
+              <option value="mobile">Mobile Apps</option>
+              <option value="devops">Cloud & DevOps</option>
+              <option value="tools">Developer Tools</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="form-project-subtitle">Subtitle / One-line Summary</label>
+            <input type="text" id="form-project-subtitle" class="form-input" placeholder="e.g. Real-time predictive telemetry platform" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-project-metric">Key Metric / Highlight</label>
+            <input type="text" id="form-project-metric" class="form-input" placeholder="e.g. ⚡ 94.8% Accuracy • 12.6K req/min">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-project-tags">Technologies (Comma separated)</label>
+            <input type="text" id="form-project-tags" class="form-input" placeholder="e.g. React, TypeScript, Node.js">
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="form-project-image">Image URL / Path or Upload</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" id="form-project-image" class="form-input" placeholder="assets/project-ai.jpg" required>
+              <input type="file" id="form-project-file" accept="image/*" style="display: none;">
+              <button type="button" class="btn btn-secondary btn-sm" id="upload-file-trigger" style="white-space: nowrap;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Upload File</span>
+              </button>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem; font-size: 0.8rem; color: var(--text-muted); align-items: center; flex-wrap: wrap;">
+              <span>Quick Presets:</span>
+              <button type="button" class="btn-outline btn-sm" onclick="document.getElementById('form-project-image').value='assets/project-ai.jpg'">AI Asset</button>
+              <button type="button" class="btn-outline btn-sm" onclick="document.getElementById('form-project-image').value='assets/project-ecommerce.jpg'">E-Commerce</button>
+              <button type="button" class="btn-outline btn-sm" onclick="document.getElementById('form-project-image').value='assets/project-fintech.jpg'">FinTech</button>
+              <span id="upload-status" style="margin-left: auto; color: var(--accent-emerald); font-weight: 500;"></span>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="form-project-overview">Project Overview</label>
+            <textarea id="form-project-overview" class="form-textarea" placeholder="Detailed description of what this application does..." style="min-height: 80px;" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-project-problem">The Challenge / Problem</label>
+            <textarea id="form-project-problem" class="form-textarea" placeholder="What core problem did this project address?" style="min-height: 70px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-project-solution">The Solution</label>
+            <textarea id="form-project-solution" class="form-textarea" placeholder="How did you solve it architecturally?" style="min-height: 70px;"></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="form-project-features">Key Architectural Features (One per line)</label>
+            <textarea id="form-project-features" class="form-textarea" placeholder="Real-time WebSocket streaming&#10;Sub-second database queries&#10;Automated canary deployments" style="min-height: 90px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-project-demourl">Live Demo URL</label>
+            <input type="url" id="form-project-demourl" class="form-input" placeholder="https://example.com/demo">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-project-githuburl">GitHub Repository URL</label>
+            <input type="url" id="form-project-githuburl" class="form-input" placeholder="https://github.com/example/repo">
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('project-edit-modal').classList.remove('active')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MESSAGE VIEW DIALOG
+       ========================================================================== -->
+  <div id="message-view-modal" class="admin-modal-overlay" role="dialog" aria-modal="true">
+    <div class="admin-modal-dialog" style="max-width: 600px;">
+      <div class="modal-title-row">
+        <h2 style="font-size: 1.4rem;">Message Details</h2>
+        <button id="message-modal-close" class="modal-close-btn" aria-label="Close dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">From</div>
+          <div id="msg-detail-sender" style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary);"></div>
+          <div id="msg-detail-email" style="color: var(--primary-400); font-size: 0.9rem;"></div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Subject</div>
+          <div id="msg-detail-subject" style="font-weight: 600; color: var(--text-primary); font-size: 1.05rem;"></div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Sent Date</div>
+          <div id="msg-detail-date" style="font-size: 0.85rem; color: var(--text-secondary);"></div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem;">Message Content</div>
+          <div id="msg-detail-body" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--border-radius-md); border: 1px solid var(--border-subtle); color: var(--text-primary); line-height: 1.6; white-space: pre-wrap;"></div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+          <a id="msg-reply-btn" href="#" class="btn btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+            <span>Reply via Email</span>
+          </a>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('message-view-modal').classList.remove('active')">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/projects-data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
