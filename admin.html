@@ -30,19 +30,18 @@
         </svg>
       </div>
       <h2 class="auth-title">Admin Access Required</h2>
-      <p class="auth-subtitle">Enter your 4-digit security PIN to manage your portfolio projects and profile settings.</p>
+      <p class="auth-subtitle">Enter your security PIN or password to manage your portfolio projects and profile settings.</p>
       
       <div class="pin-input-group">
         <input 
           type="password" 
           id="pin-input" 
           class="pin-input" 
-          placeholder="••••" 
-          maxlength="8" 
+          placeholder="••••••••" 
+          maxlength="32" 
           autocomplete="off"
         >
-        <p id="auth-error" class="auth-error">Incorrect PIN. Please try again.</p>
-        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem;">Default Security PIN: <strong>1234</strong></p>
+        <p id="auth-error" class="auth-error">Incorrect PIN / Password. Please try again.</p>
       </div>
 
       <button id="auth-submit-btn" class="btn btn-primary" style="width: 100%;">
