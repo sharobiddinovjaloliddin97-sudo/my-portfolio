@@ -53,13 +53,37 @@ async function sendTelegramNotification(name, email, subject, message) {
   }
 }
 
+// In-memory rate limiting for contact form (max 5 submissions per 10 minutes per IP)
+const contactAttempts = new Map();
+function rateLimitContact(req, res, next) {
+  const ip = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const windowMs = 10 * 60 * 1000;
+  const maxAttempts = 5;
+
+  const records = (contactAttempts.get(ip) || []).filter(ts => now - ts < windowMs);
+
+  if (records.length >= maxAttempts) {
+    return res.status(429).json({ error: 'Too many messages sent. Please wait a few minutes before trying again.' });
+  }
+
+  records.push(now);
+  contactAttempts.set(ip, records);
+  next();
+}
+
 // POST /api/contact - Public contact form submission
-router.post(['/', '/contact'], async (req, res) => {
+router.post(['/', '/contact'], rateLimitContact, async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
 
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Name, email, and message are required' });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(String(email).trim())) {
+      return res.status(400).json({ error: 'Please provide a valid email address' });
     }
 
     const result = await runQuery(`

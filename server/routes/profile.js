@@ -47,7 +47,8 @@ router.put('/', requireAuth, async (req, res) => {
       email,
       phone,
       socialLinks,
-      stats
+      stats,
+      resumeUrl
     } = req.body;
 
     const stringifiedSocialLinks = JSON.stringify(socialLinks || {});
@@ -69,6 +70,7 @@ router.put('/', requireAuth, async (req, res) => {
         phone = ?,
         socialLinks = ?,
         stats = COALESCE(?, stats),
+        resumeUrl = COALESCE(?, resumeUrl),
         updatedAt = CURRENT_TIMESTAMP
       WHERE id = 1
     `, [
@@ -80,7 +82,8 @@ router.put('/', requireAuth, async (req, res) => {
       email || existing.email,
       phone !== undefined ? phone : existing.phone,
       stringifiedSocialLinks,
-      stringifiedStats
+      stringifiedStats,
+      resumeUrl !== undefined ? resumeUrl : null
     ]);
 
     const updated = await getQuery('SELECT * FROM profile WHERE id = 1');

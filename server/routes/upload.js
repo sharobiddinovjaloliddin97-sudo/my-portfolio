@@ -64,4 +64,45 @@ router.post('/', requireAuth, upload.single('image'), (req, res) => {
   }
 });
 
+// CV / Resume document filter & multer
+const docFilter = (req, file, cb) => {
+  const allowed = /pdf|doc|docx/;
+  const ext = path.extname(file.originalname).toLowerCase().replace('.', '');
+  if (allowed.test(ext)) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only PDF or Word documents (.pdf, .doc, .docx) are allowed!'));
+  }
+};
+
+const uploadDoc = multer({
+  storage: storage,
+  limits: { fileSize: 15 * 1024 * 1024 }, // 15MB limit
+  fileFilter: docFilter
+});
+
+// POST /api/upload/cv - Admin CV / Resume upload & automatic profile update
+router.post('/cv', requireAuth, uploadDoc.single('cv'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No CV document uploaded' });
+    }
+
+    const relativeUrl = `uploads/${req.file.filename}`;
+    const { runQuery } = require('../db');
+    await runQuery('UPDATE profile SET resumeUrl = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = 1', [relativeUrl]);
+
+    res.json({
+      success: true,
+      url: relativeUrl,
+      filename: req.file.filename,
+      size: req.file.size,
+      message: 'CV uploaded and updated successfully!'
+    });
+  } catch (err) {
+    console.error('CV upload error:', err);
+    res.status(500).json({ error: 'Failed to upload CV: ' + err.message });
+  }
+});
+
 module.exports = router;

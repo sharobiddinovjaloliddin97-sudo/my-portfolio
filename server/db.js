@@ -57,9 +57,13 @@ async function initDatabase() {
       phone TEXT,
       socialLinks TEXT,
       stats TEXT,
+      resumeUrl TEXT,
       updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `);
+
+  // Migrate existing databases to have resumeUrl
+  await runQuery(`ALTER TABLE profile ADD COLUMN resumeUrl TEXT`).catch(() => {});
 
   await runQuery(`
     CREATE TABLE IF NOT EXISTS projects (

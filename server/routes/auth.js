@@ -22,14 +22,31 @@ function requireAuth(req, res, next) {
   }
 }
 
+// In-memory rate limiting for login attempts (max 5 failed attempts per 5 minutes per IP)
+const loginAttempts = new Map();
+
 // POST /api/auth/login
 router.post('/login', (req, res) => {
+  const ip = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const windowMs = 5 * 60 * 1000;
+  const maxAttempts = 5;
+
+  const records = (loginAttempts.get(ip) || []).filter(ts => now - ts < windowMs);
+  if (records.length >= maxAttempts) {
+    return res.status(429).json({
+      success: false,
+      error: 'Too many failed login attempts. Please wait 5 minutes.'
+    });
+  }
+
   const { pin } = req.body;
   if (!pin) {
     return res.status(400).json({ error: 'PIN is required' });
   }
 
   if (String(pin).trim() === String(ADMIN_PIN).trim()) {
+    loginAttempts.delete(ip); // Clear on success
     const token = jwt.sign({ role: 'admin' }, JWT_SECRET, { expiresIn: '7d' });
     return res.json({
       success: true,
@@ -37,6 +54,8 @@ router.post('/login', (req, res) => {
       message: 'Access granted'
     });
   } else {
+    records.push(now);
+    loginAttempts.set(ip, records);
     return res.status(401).json({
       success: false,
       error: 'Incorrect PIN. Access denied.'

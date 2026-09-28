@@ -288,6 +288,53 @@
             </button>
           </div>
         </form>
+
+        <!-- CV / Resume Document Manager Card -->
+        <div class="admin-card" style="margin-top: 2rem; border: 1px solid var(--border-medium); background: var(--bg-surface-card);">
+          <div class="card-header-flex">
+            <div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.6rem;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary-400)" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Curriculum Vitae (CV / Resume)</span>
+              </h3>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                Upload your latest resume document (.pdf, .doc, .docx). The live "Download CV" button on your portfolio website will automatically link to this file.
+              </p>
+            </div>
+            <div id="cv-status-badge" style="padding: 0.35rem 0.85rem; background: var(--badge-bg); border: 1px solid var(--badge-border); border-radius: var(--border-radius-full); font-size: 0.8rem; font-weight: 500;">
+              Checking file...
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+            <div style="flex: 1; min-width: 260px; display: flex; align-items: center;">
+              <input type="file" id="cv-file-input" accept=".pdf,.doc,.docx" style="display: none;">
+              <button type="button" id="cv-select-btn" class="btn btn-secondary btn-sm" style="gap: 0.5rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Choose CV File</span>
+              </button>
+              <span id="cv-selected-filename" style="margin-left: 0.85rem; font-size: 0.875rem; color: var(--text-muted); font-family: var(--font-mono, monospace);">No file selected</span>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <button type="button" id="cv-upload-btn" class="btn btn-primary btn-sm" disabled style="gap: 0.5rem;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Upload & Save CV</span>
+              </button>
+
+              <a id="cv-preview-link" href="assets/resume.pdf" target="_blank" class="btn btn-outline btn-sm" style="gap: 0.5rem;" title="Open currently uploaded CV">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>View Current CV</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -686,6 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   function populateProfileForm() {
     const profile = adminData.profile;
+    updateCvUi();
     if (!profile) return;
 
     document.getElementById('form-profile-name').value = profile.name || '';
@@ -696,6 +697,95 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('form-profile-phone').value = profile.phone || '';
     document.getElementById('form-profile-github').value = profile.socialLinks?.github || '';
     document.getElementById('form-profile-linkedin').value = profile.socialLinks?.linkedin || '';
+  }
+
+  /* ==========================================================================
+     CV / RESUME UPLOADER LOGIC
+     ========================================================================== */
+  const cvFileInput = document.getElementById('cv-file-input');
+  const cvSelectBtn = document.getElementById('cv-select-btn');
+  const cvUploadBtn = document.getElementById('cv-upload-btn');
+  const cvSelectedFilename = document.getElementById('cv-selected-filename');
+  const cvPreviewLink = document.getElementById('cv-preview-link');
+  const cvStatusBadge = document.getElementById('cv-status-badge');
+
+  function updateCvUi() {
+    const resumeUrl = adminData.profile?.resumeUrl;
+    if (cvPreviewLink) {
+      cvPreviewLink.href = resumeUrl || 'assets/resume.pdf';
+    }
+    if (cvStatusBadge) {
+      if (resumeUrl) {
+        const name = resumeUrl.split('/').pop();
+        cvStatusBadge.textContent = `✔ Uploaded (${name})`;
+        cvStatusBadge.style.color = "var(--accent-emerald)";
+        cvStatusBadge.style.borderColor = "var(--accent-emerald)";
+      } else {
+        cvStatusBadge.textContent = "Default (assets/resume.pdf)";
+        cvStatusBadge.style.color = "var(--text-secondary)";
+        cvStatusBadge.style.borderColor = "var(--border-subtle)";
+      }
+    }
+  }
+
+  if (cvSelectBtn && cvFileInput) {
+    cvSelectBtn.addEventListener('click', () => cvFileInput.click());
+
+    cvFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        if (cvSelectedFilename) cvSelectedFilename.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        if (cvUploadBtn) cvUploadBtn.disabled = false;
+      } else {
+        if (cvSelectedFilename) cvSelectedFilename.textContent = 'No file selected';
+        if (cvUploadBtn) cvUploadBtn.disabled = true;
+      }
+    });
+  }
+
+  if (cvUploadBtn && cvFileInput) {
+    cvUploadBtn.addEventListener('click', async () => {
+      const file = cvFileInput.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('cv', file);
+
+      cvUploadBtn.disabled = true;
+      const originalBtnText = cvUploadBtn.innerHTML;
+      cvUploadBtn.innerHTML = `
+        <svg class="animate-spin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="12"></circle>
+        </svg>
+        <span>Uploading...</span>
+      `;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/upload/cv`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: formData
+        });
+
+        const data = await res.json();
+        if (data.success && data.url) {
+          if (!adminData.profile) adminData.profile = {};
+          adminData.profile.resumeUrl = data.url;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(adminData));
+          updateCvUi();
+          if (cvSelectedFilename) cvSelectedFilename.textContent = `✔ Saved: ${file.name}`;
+          showToast('CV uploaded and linked to portfolio successfully!');
+        } else {
+          showToast(`Error: ${data.error || 'Failed to upload CV'}`);
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('Network error while uploading CV.');
+      } finally {
+        cvUploadBtn.disabled = false;
+        cvUploadBtn.innerHTML = originalBtnText;
+      }
+    });
   }
 
   if (profileForm) {
@@ -709,6 +799,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bio: document.getElementById('form-profile-bio').value.trim(),
         email: document.getElementById('form-profile-email').value.trim(),
         phone: document.getElementById('form-profile-phone').value.trim(),
+        resumeUrl: adminData.profile?.resumeUrl,
         socialLinks: {
           ...(adminData.profile?.socialLinks || {}),
           github: document.getElementById('form-profile-github').value.trim(),
@@ -729,6 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const data = await res.json();
           if (data.success) {
             adminData.profile = data.profile;
+            updateCvUi();
             showToast("Profile settings saved to database!");
             return;
           }

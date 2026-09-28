@@ -68,6 +68,111 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
+     UTILITY: DEBOUNCE
+     ========================================================================== */
+  function debounce(fn, delay = 180) {
+    let timerId;
+    return (...args) => {
+      clearTimeout(timerId);
+      timerId = setTimeout(() => fn(...args), delay);
+    };
+  }
+
+  /* ==========================================================================
+     HERO: DYNAMIC TYPEWRITER EFFECT
+     ========================================================================== */
+  function initTypewriter() {
+    const typewriterEl = document.getElementById('hero-typewriter');
+    if (!typewriterEl) return;
+
+    const phrases = [
+      "Full-Stack Web Applications",
+      "Asynchronous Python Bots",
+      "Modern React & Next.js Platforms",
+      "Scalable Cloud & REST APIs",
+      "High-Performance Databases"
+    ];
+
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    let speed = 90;
+
+    function typeLoop() {
+      const current = phrases[phraseIdx];
+
+      if (isDeleting) {
+        typewriterEl.textContent = current.substring(0, charIdx - 1);
+        charIdx--;
+        speed = 40;
+      } else {
+        typewriterEl.textContent = current.substring(0, charIdx + 1);
+        charIdx++;
+        speed = 85;
+      }
+
+      if (!isDeleting && charIdx === current.length) {
+        speed = 1800; // Pause at full word
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        speed = 350; // Pause before typing next word
+      }
+
+      setTimeout(typeLoop, speed);
+    }
+
+    typeLoop();
+  }
+
+  /* ==========================================================================
+     SCROLL REVEAL & SKILL BAR OBSERVER
+     ========================================================================== */
+  let scrollObserver = null;
+
+  function initScrollObserver() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('reveal-visible'));
+      document.querySelectorAll('.skill-progress-fill').forEach(fill => {
+        fill.style.width = fill.getAttribute('data-level') || '100%';
+      });
+      return;
+    }
+
+    if (scrollObserver) {
+      scrollObserver.disconnect();
+    }
+
+    scrollObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+
+          // Animate any skill bars inside this element
+          const fills = entry.target.querySelectorAll('.skill-progress-fill');
+          fills.forEach(fill => {
+            const level = fill.getAttribute('data-level');
+            if (level) {
+              fill.style.width = level;
+            }
+          });
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.12
+    });
+
+    document.querySelectorAll('.reveal:not(.reveal-visible)').forEach(el => {
+      scrollObserver.observe(el);
+    });
+  }
+
+  /* ==========================================================================
      POPULATE PROFILE & STATS
      ========================================================================== */
   function populateProfile() {
@@ -91,6 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const contactPhoneEl = document.getElementById('contact-phone-text');
     if (contactPhoneEl) contactPhoneEl.textContent = profile.phone;
+
+    // Link dynamic CV / Resume if configured
+    const resumeBtn = document.getElementById('resume-download-btn');
+    if (resumeBtn && profile.resumeUrl) {
+      resumeBtn.href = profile.resumeUrl;
+      const cvFilename = profile.resumeUrl.split('/').pop() || 'CV.pdf';
+      resumeBtn.setAttribute('download', cvFilename);
+    }
 
     // Render Stats
     const statsContainer = document.getElementById('hero-stats-container');
@@ -189,8 +302,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    projectsContainer.innerHTML = filtered.map(project => `
-      <article class="project-card" data-id="${project.id}">
+    projectsContainer.innerHTML = filtered.map((project, idx) => `
+      <article class="project-card reveal reveal-delay-${(idx % 4) + 1}" data-id="${project.id}">
         <div class="card-media">
           <img class="card-img" src="${project.image}" alt="${escapeHtml(project.title)}" loading="lazy">
           <span class="card-category-badge">${getCategoryLabel(project.category)}</span>
@@ -229,6 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(id);
       });
     });
+
+    initScrollObserver();
   }
 
   function getCategoryLabel(catId) {
@@ -237,16 +352,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     SEARCH BAR LOGIC
+     SEARCH BAR LOGIC (DEBOUNCED)
      ========================================================================== */
   if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
+    searchInput.addEventListener('input', debounce((e) => {
       state.searchQuery = e.target.value;
       if (clearSearchBtn) {
         clearSearchBtn.classList.toggle('visible', state.searchQuery.length > 0);
       }
       renderProjects();
-    });
+    }, 180));
   }
 
   if (clearSearchBtn) {
@@ -337,14 +452,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     SKILLS SECTION RENDERING
+     SKILLS SECTION RENDERING (WITH PROGRESS FILL ANIMATION)
      ========================================================================== */
   function renderSkills() {
     const skillsContainer = document.getElementById('skills-container');
     if (!skillsContainer) return;
 
-    skillsContainer.innerHTML = portfolioData.skills.map(skillGroup => `
-      <div class="skill-category-card">
+    skillsContainer.innerHTML = portfolioData.skills.map((skillGroup, idx) => `
+      <div class="skill-category-card reveal reveal-delay-${(idx % 4) + 1}">
         <div class="skill-card-header">
           <div class="skill-icon-wrap">
             ${skillGroup.icon}
@@ -359,13 +474,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span style="color: var(--text-muted); font-size: 0.8rem;">${item.level}%</span>
               </div>
               <div class="skill-progress-bar">
-                <div class="skill-progress-fill" style="width: ${item.level}%;"></div>
+                <div class="skill-progress-fill" style="width: 0%;" data-level="${item.level}%"></div>
               </div>
             </div>
           `).join('')}
         </div>
       </div>
     `).join('');
+
+    initScrollObserver();
   }
 
   /* ==========================================================================
@@ -375,8 +492,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const timelineContainer = document.getElementById('timeline-container');
     if (!timelineContainer) return;
 
-    timelineContainer.innerHTML = portfolioData.experience.map(item => `
-      <div class="timeline-item">
+    timelineContainer.innerHTML = portfolioData.experience.map((item, idx) => `
+      <div class="timeline-item reveal reveal-delay-${(idx % 4) + 1}">
         <div class="timeline-dot"></div>
         <div class="timeline-content-card">
           <div class="timeline-header">
@@ -390,6 +507,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     `).join('');
+
+    initScrollObserver();
   }
 
   /* ==========================================================================
@@ -460,12 +579,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalHtml = submitBtn.innerHTML;
 
-      const name = document.getElementById('contact-name').value.trim();
-      const email = document.getElementById('contact-email').value.trim();
-      const subject = document.getElementById('contact-subject').value.trim();
-      const message = document.getElementById('contact-message').value.trim();
+      const nameInput = document.getElementById('contact-name');
+      const emailInput = document.getElementById('contact-email');
+      const subjectInput = document.getElementById('contact-subject');
+      const messageInput = document.getElementById('contact-message');
 
-      // Set loading state
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const subject = subjectInput.value.trim();
+      const message = messageInput.value.trim();
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        emailInput.classList.add('input-error');
+        setTimeout(() => emailInput.classList.remove('input-error'), 1200);
+        showToast('Please provide a valid email address.');
+        emailInput.focus();
+        return;
+      }
+
+      // Set loading state with spinner
       submitBtn.disabled = true;
       submitBtn.innerHTML = `
         <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -498,6 +632,14 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalHtml;
       }
+    });
+  }
+
+  // Resume Download Button feedback
+  const resumeDownloadBtn = document.getElementById('resume-download-btn');
+  if (resumeDownloadBtn) {
+    resumeDownloadBtn.addEventListener('click', () => {
+      showToast('Downloading resume / CV...');
     });
   }
 
@@ -593,10 +735,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Portfolio UI with local/default data first
   populateProfile();
+  initTypewriter();
   renderFilterTabs();
   renderProjects();
   renderSkills();
   renderTimeline();
+  initScrollObserver();
 
   // Then asynchronously sync with live SQLite REST API if server is running
   async function syncWithServer() {
